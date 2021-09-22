@@ -5,8 +5,8 @@ import urllib.request
 
 file_url = ('http://s3.amazonaws.com/cuny-is211-spring2015/weblog.csv')
 
-# Part I/II - Pulls and processes csv file
-def downloadData(url):
+def downloadData(url):          # Part I/II - Pulls and processes csv file
+
     fetch_url = urllib.request.urlopen(url)
     data = fetch_url.read().decode('utf-8')
     file = data.splitlines()
@@ -14,8 +14,8 @@ def downloadData(url):
     csv_list = (list(file_reader))
     return csv_list
 
-# Part III - Search csv for image type hits
-def processImgData(file):
+def processImgData(file):       # Part III - Search csv for image type hits
+
 
     img_hits = 0
     row_count = 0
@@ -28,11 +28,12 @@ def processImgData(file):
             img_hits += 1
 
     img_percentage = (img_hits / row_count) * 100
+    # prints out image requests, total requests, and percentage of requests that were for image files
     print(f'There are a total of {img_hits} image requests in this file')
     print(f'There are a total of {row_count} requests in this file')
     print(f'Image requests account for {img_percentage}% of all requests!')
 
-def populartBrowser(file):
+def popularBrowser(file):           # Counts the browsers used to access files, finds most used
 
     browser = { 'Firefox' : 0,
                     'Chrome' : 0,
@@ -51,6 +52,7 @@ def populartBrowser(file):
 
 
     pop_browser = max(browser, key=browser.get)
+
     print(f'The most popular browser is {pop_browser} with X users')
 
 '''def main(url):
@@ -59,7 +61,7 @@ def populartBrowser(file):
 
 print(downloadData(file_url))
 processImgData(downloadData(file_url))
-populartBrowser(downloadData(file_url))
+popularBrowser(downloadData(file_url))
 
 
 if __name__ == "__main__":
