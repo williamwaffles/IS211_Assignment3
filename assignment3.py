@@ -16,7 +16,6 @@ def downloadData(url):          # Part I/II - Pulls and processes csv file
 
 def processImgData(file):       # Part III - Search csv for image type hits
 
-
     img_hits = 0
     row_count = 0
 
@@ -33,7 +32,7 @@ def processImgData(file):       # Part III - Search csv for image type hits
     print(f'There are a total of {row_count} requests in this file.')
     print(f'Image requests account for {img_percentage}% of all requests!')
 
-def popularBrowser(file):           # Counts the browsers used to access files, finds most used
+def popularBrowser(file):           # Counts the browsers used to access files, finds most popular
 
     browser = { 'Firefox' : 0,
                     'Chrome' : 0,
@@ -50,26 +49,21 @@ def popularBrowser(file):           # Counts the browsers used to access files, 
         elif re.search('Windows NT|MSIE', line[2]):
             browser['Internet Explorer'] += 1
 
-
-    pop_browser = max(browser, key=browser.get)
+    pop_browser = max(browser, key=browser.get) # finds most popular browser by key
     browser_count = browser.values()
-    max_value = max(browser_count)
-
+    max_value = max(browser_count)      # most popular browser by value
     print(f'The most popular browser is {pop_browser} with {max_value} users!')
 
-'''def main(url):
+def main(url):
     print(f"Running main with URL = {url}...")
-    pass'''
-
-print(downloadData(file_url))
-processImgData(downloadData(file_url))
-popularBrowser(downloadData(file_url))
-
+    #print(downloadData(file_url))
+    processImgData(downloadData(file_url))
+    popularBrowser(downloadData(file_url))
 
 if __name__ == "__main__":
     """Main entry point"""
-    #parser = argparse.ArgumentParser()
-    #parser.add_argument("--url", help="URL to the datafile", type=str, required=True)
-    #args = parser.parse_args()
-    #main(args.url)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", help="URL to the datafile", type=str, required=True)
+    args = parser.parse_args()
+    main(args.url)
     
