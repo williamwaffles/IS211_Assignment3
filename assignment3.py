@@ -23,14 +23,14 @@ def processImgData(file):       # Part III - Search csv for image type hits
     for line in file:
         print(line[0])
         row_count += 1
-        img_search = re.search(r'jpg|gif|png|JPG|GIF|PNG', line[0], re.IGNORECASE)     # check for .jpg, .gif, .png
+        img_search = re.search(r'jpg|gif|png', line[0], re.IGNORECASE)     # check for .jpg, .gif, .png
         if img_search:
             img_hits += 1
 
     img_percentage = (img_hits / row_count) * 100
     # prints out image requests, total requests, and percentage of requests that were for image files
-    print(f'There are a total of {img_hits} image requests in this file')
-    print(f'There are a total of {row_count} requests in this file')
+    print(f'There are a total of {img_hits} image requests in this file.')
+    print(f'There are a total of {row_count} requests in this file.')
     print(f'Image requests account for {img_percentage}% of all requests!')
 
 def popularBrowser(file):           # Counts the browsers used to access files, finds most used
@@ -52,8 +52,10 @@ def popularBrowser(file):           # Counts the browsers used to access files, 
 
 
     pop_browser = max(browser, key=browser.get)
+    browser_count = browser.values()
+    max_value = max(browser_count)
 
-    print(f'The most popular browser is {pop_browser} with X users')
+    print(f'The most popular browser is {pop_browser} with {max_value} users!')
 
 '''def main(url):
     print(f"Running main with URL = {url}...")
